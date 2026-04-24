@@ -16,14 +16,14 @@
       <header class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Live Monitor</p>
-          <h1>News streams on one page</h1>
+          <h1>Five news channels, one tap away</h1>
           <p class="hero-text">
-            Tap a channel to switch the live feed. Replace the sample URLs in
-            <code>app.js</code> with your own GitHub-hosted playlists later.
+            Tap a channel to switch the live feed. Open settings to replace any
+            stream URL directly on your iPad and keep it saved in Safari.
           </p>
         </div>
         <div class="hero-badge">
-          <span>5 channels</span>
+          <span>Saved locally</span>
           <strong>iPad-ready</strong>
         </div>
       </header>
@@ -48,14 +48,42 @@
               Official Bloomberg US live stream.
             </p>
           </div>
+
+          <div class="status-bar">
+            <span id="status-text">Local settings are active on this device.</span>
+            <button id="fullscreen-button" type="button" class="secondary-action">
+              Fullscreen
+            </button>
+          </div>
         </section>
 
         <aside class="channel-panel">
           <div class="panel-header">
             <p class="meta-label">Channels</p>
-            <p class="panel-note">Tap to switch instantly</p>
+            <button id="settings-toggle" type="button" class="secondary-action">
+              Edit
+            </button>
           </div>
           <div id="channel-list" class="channel-list" aria-label="Channel list"></div>
+
+          <section id="settings-panel" class="settings-panel" hidden>
+            <div class="settings-copy">
+              <p class="meta-label">Settings</p>
+              <p class="panel-note">
+                These URLs are saved only in this browser on this device.
+              </p>
+            </div>
+
+            <form id="channel-form" class="channel-form">
+              <div id="channel-form-list" class="channel-form-list"></div>
+              <div class="form-actions">
+                <button type="submit" class="primary-action">Save Channels</button>
+                <button id="reset-button" type="button" class="secondary-action">
+                  Reset Defaults
+                </button>
+              </div>
+            </form>
+          </section>
         </aside>
       </main>
     </div>
