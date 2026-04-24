@@ -35,6 +35,7 @@ const defaultChannels = [
 
 const player = document.querySelector("#player");
 const channelList = document.querySelector("#channel-list");
+const quickChannelList = document.querySelector("#quick-channel-list");
 const channelTitle = document.querySelector("#channel-title");
 const channelDescription = document.querySelector("#channel-description");
 const settingsToggle = document.querySelector("#settings-toggle");
@@ -100,8 +101,13 @@ function setStatus(message) {
 
 function setActiveButton(channelId) {
   const buttons = channelList.querySelectorAll(".channel-button");
+  const quickButtons = quickChannelList.querySelectorAll(".quick-channel-button");
 
   buttons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.channelId === channelId);
+  });
+
+  quickButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.channelId === channelId);
   });
 }
@@ -112,6 +118,7 @@ function getDisplayUrl(url) {
 
 function renderChannelButtons() {
   channelList.innerHTML = "";
+  quickChannelList.innerHTML = "";
 
   channels.forEach((channel) => {
     const button = document.createElement("button");
@@ -126,6 +133,15 @@ function renderChannelButtons() {
     `;
     button.addEventListener("click", () => loadChannel(channel.id));
     channelList.appendChild(button);
+
+    const quickButton = document.createElement("button");
+    quickButton.type = "button";
+    quickButton.className = "quick-channel-button";
+    quickButton.dataset.channelId = channel.id;
+    quickButton.disabled = !channel.url;
+    quickButton.textContent = channel.title;
+    quickButton.addEventListener("click", () => loadChannel(channel.id));
+    quickChannelList.appendChild(quickButton);
   });
 
   setActiveButton(activeChannelId);
