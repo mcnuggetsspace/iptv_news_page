@@ -178,6 +178,17 @@ function loadChannel(channelId) {
     return;
   }
 
+  const canUseNativeHls =
+    typeof player.canPlayType === "function" &&
+    player.canPlayType("application/vnd.apple.mpegurl") !== "";
+
+  if (canUseNativeHls) {
+    player.src = channel.url;
+    setStatus(`${channel.title} is ready.`);
+    player.play().catch(() => {});
+    return;
+  }
+
   if (window.Hls && window.Hls.isSupported()) {
     hls = new window.Hls({
       enableWorker: true,
@@ -191,7 +202,9 @@ function loadChannel(channelId) {
     });
     hls.on(window.Hls.Events.ERROR, (_event, data) => {
       if (data?.fatal) {
-        setStatus(`Playback error for ${channel.title}. Try another stream URL.`);
+        setStatus(
+          `Playback error for ${channel.title}. This stream may block cross-site playback in this browser.`
+        );
       }
     });
     return;
