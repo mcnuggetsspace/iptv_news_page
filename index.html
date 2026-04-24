@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News Streams</title>
+    <meta
+      name="description"
+      content="Simple iPad-friendly page for switching between live news streams."
+    />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live Monitor</p>
+          <h1>News streams on one page</h1>
+          <p class="hero-text">
+            Tap a channel to switch the live feed. Replace the sample URLs in
+            <code>app.js</code> with your own GitHub-hosted playlists later.
+          </p>
+        </div>
+        <div class="hero-badge">
+          <span>5 channels</span>
+          <strong>iPad-ready</strong>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="player-panel">
+          <div class="player-frame">
+            <video
+              id="player"
+              class="player"
+              controls
+              playsinline
+              webkit-playsinline
+              preload="metadata"
+            ></video>
+          </div>
+
+          <div class="now-playing">
+            <p class="meta-label">Now playing</p>
+            <h2 id="channel-title">Bloomberg TV US</h2>
+            <p id="channel-description" class="channel-description">
+              Official Bloomberg US live stream.
+            </p>
+          </div>
+        </section>
+
+        <aside class="channel-panel">
+          <div class="panel-header">
+            <p class="meta-label">Channels</p>
+            <p class="panel-note">Tap to switch instantly</p>
+          </div>
+          <div id="channel-list" class="channel-list" aria-label="Channel list"></div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20/dist/hls.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
