@@ -352,9 +352,9 @@ code {
   font-size: 0.9em;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1180px) {
   .page-shell {
-    width: min(100vw - 20px, 860px);
+    width: min(100vw - 20px, 980px);
     margin: 10px auto 22px;
     padding: 8px 0;
   }
@@ -380,6 +380,25 @@ code {
 
   .hero-badge {
     text-align: left;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    width: min(100vw - 16px, 860px);
+  }
+
+  .hero,
+  .player-panel,
+  .channel-panel {
+    border-radius: 22px;
+  }
+
+  .hero,
+  .channel-panel,
+  .player-panel {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 
